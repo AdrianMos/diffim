@@ -1,4 +1,4 @@
-﻿# diffim
+# diffim
 Open-source, command-line, image comparing tool with masks support.
 
 <img src="doc/img/diff.png" width="70%"> 
@@ -57,10 +57,10 @@ To get the latest syntax, run the help command:
 <img src="doc/img/syntax.png" width="965"> 
 
 
-
 ## Reports
 Every comparison generates a full .json report (+ a simplified .csv one).  
 The report includes a comparison summary, statistics (e.g. number of identical images) and detailed data:
+
 <img src="doc/img/json.png" width="965"> 
 
 
