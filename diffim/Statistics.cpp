@@ -12,7 +12,7 @@ void Statistics::add_status(ComparisonStatus status)
     }
 }
 
-string Statistics::to_string()
+string Statistics::to_string() const
 {
     return   " total comparisons: " + std::to_string(total()) + "\n"
            + "  identical:    " + std::to_string(identical()) + "\n"
@@ -21,12 +21,12 @@ string Statistics::to_string()
            + "  not compared: " + std::to_string(not_compared());
 }
 
-int Statistics::total()
+int Statistics::total() const
 {
     return identical() + different() + missing() + not_compared();
 }
 
-void Statistics::print()
+void Statistics::print() const
 {
     std::cout << "\nStatistics: \n" << to_string() << "\n";
 }

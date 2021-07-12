@@ -8,13 +8,15 @@
 #include "Parameters.h"
 #include "reporters\IReporter.h"
 #include "reporters\JsonReporter.h"
-#include "reporters\TabReporter.h"
+#include "reporters\CsvReporter.h"
 #include "utils.h"
 
 
 void save_reports(std::vector<ComparableEntity>& items, Statistics statistics,
                   const Parameters& params);
 Statistics compute_statistics(std::vector<ComparableEntity>& items);
+void handle_invalid_params_or_help_command(const Parameters& params);
+
 
 
 int main(int argc, char** argv)
@@ -24,6 +26,7 @@ int main(int argc, char** argv)
 
         Parameters params;
         params.load_from_args(argc, argv);
+        handle_invalid_params_or_help_command(params);
         params.print();
 
         print_separator();
@@ -31,7 +34,7 @@ int main(int argc, char** argv)
         // App not started in full params mode => create default folder structure
         // to help the user in placing the images he wants to compare (e.g. masks
         // folder, referece images folder)
-        if (params.type != Parameters::ParamsType::FullParams)
+        if (params.type() != Parameters::ParamsType::FullParams)
             create_input_folders(params);
 
         check_input_folders_existance(params);
@@ -53,20 +56,33 @@ int main(int argc, char** argv)
         statistics.print();
         print_separator();
     }
-    catch (const std::invalid_argument& e) {
-        std::cout << "\nERROR: invalid argument exception: " << e.what()
-                  << "\n\n";
-        Parameters::print_cmd_syntax();
-        exit(EXIT_FAILURE);
-    }
     catch (const std::exception& e) {
         std::cout << "\nERROR: " << e.what() << "\n\n";
+        Parameters::print_syntax();
         exit(EXIT_FAILURE);
     }
 
     return EXIT_SUCCESS;
 }
 
+
+void handle_invalid_params_or_help_command(const Parameters& params)
+{
+    switch (params.type()) {
+        case Parameters::ParamsType::HelpCommand:
+            params.print_syntax();
+            params.print_examples();
+            print_separator();
+            exit(EXIT_FAILURE);
+            break;
+        case Parameters::ParamsType::Unknown:
+            std::cout << "Use the following syntax for starting image "
+                         "comparison:\n";
+            params.print_syntax();
+            print_separator();
+            exit(EXIT_FAILURE);
+    }
+}
 
 void save_reports(std::vector<ComparableEntity>& items, Statistics statistics,
                   const Parameters& params)
@@ -76,7 +92,7 @@ void save_reports(std::vector<ComparableEntity>& items, Statistics statistics,
     // For now we generate two report types (json & tab seprated file)
     std::vector<std::unique_ptr<IReporter>> reporters;
     reporters.emplace_back(std::make_unique<JsonReporter>(statistics));
-    reporters.emplace_back(std::make_unique<TabReporter>());
+    reporters.emplace_back(std::make_unique<CsvReporter>());
 
     for (auto& reporter : reporters) {
         auto path = reporter->generate_report_path(params.reports_folder);

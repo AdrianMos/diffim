@@ -9,7 +9,7 @@ JsonReporter::JsonReporter(Statistics statistics) : _statistics(statistics)
 {
 }
 
-void JsonReporter::save(std::vector<ComparableEntity>& data,
+void JsonReporter::save(const std::vector<ComparableEntity>& data,
                         const fs::path& report_filepath,
                         const Parameters& params)
 {
@@ -32,7 +32,7 @@ void JsonReporter::save(std::vector<ComparableEntity>& data,
     JsonElem root("");
     JsonElem summary("summary",
                      {{"success", _statistics.total()==_statistics.identical() ? "True" : "False"},
-                      {"images", params.compare_folder.string()},
+                      {"images", params.images_folder.string()},
                       {"references", params.reference_folder.string()},
                       {"masks", params.masks_folder.string()},
                       {"threshold", params.threshold}});
@@ -47,13 +47,11 @@ void JsonReporter::save(std::vector<ComparableEntity>& data,
 
         JsonElem summary2("summary",
                      {{"success", _statistics.total()==_statistics.identical() ? "True" : "False"},
-                      {"images", params.compare_folder.string()},
+                      {"images", params.images_folder.string()},
                       {"references", params.reference_folder.string()},
                       {"masks", params.masks_folder.string()},
                       {"threshold", params.threshold}});
 
-        summary2.add(results);
-        stats.add(summary2);
 
     root.add(summary).add(stats).add(results);
 
@@ -61,13 +59,11 @@ void JsonReporter::save(std::vector<ComparableEntity>& data,
     ofstream file;
     file.open(report_filepath);
     file << root.to_pritty_string(0);
-    file << "\n" << std::string(50, '*') << "\n";
-    file << root.to_string();
     file.close();
 }
 
 
-fs::path JsonReporter::generate_report_path(const fs::path& report_folder)
+fs::path JsonReporter::generate_report_path(const fs::path& report_folder) const
 {
     return (report_folder / "comparison.json");
 }

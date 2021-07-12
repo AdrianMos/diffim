@@ -19,7 +19,7 @@ class FolderScanner {
     //   folder.
     //   2. In case of failure, a folder specific mask is searched (_mask.png).
     //   3. In case of failure, an empty string is returned.
-    std::string find_mask(const fs::path& reference_image);
+    std::string find_mask(const fs::path& reference_image) const;
 
     bool is_supported_format(const fs::path& file);
 };

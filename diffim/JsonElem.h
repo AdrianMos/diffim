@@ -21,8 +21,8 @@ class JsonElem {
 
     JsonElem& add(JsonElem elem);
 
-    std::string to_string();
-    std::string to_pritty_string(int padding);
+    std::string to_string() const;
+    std::string to_pritty_string(int padding) const;
 
 private:
     std::string _title;
@@ -30,15 +30,15 @@ private:
     std::optional<std::string> _value;
     std::vector<JsonElem> _children;
     
-    std::string get_value();
-    std::string get_value_pritty(int padding);
-    std::string get_container_values();
-    std::string get_container_values_pritty(int padding=0);
+    std::string get_value() const;
+    std::string get_value_pritty(int padding) const;
+    std::string get_container_values() const;
+    std::string get_container_values_pritty(int padding=0) const; 
 
-    std::string end_delimiter();
-    std::string start_delimiter();
+    std::string end_delimiter() const;
+    std::string start_delimiter() const;
 
-    std::string quote(const string status);
-    std::string escape_chars(const string text);
+    std::string quote(const string status) const;
+    std::string escape_chars(const string text) const;
 
 };

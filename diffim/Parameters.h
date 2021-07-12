@@ -10,26 +10,30 @@ class Parameters {
     fs::path root{fs::current_path()};
 
  public:
-    enum class ParamsType { DefaultParams, ThresholdOnly, FullParams };
+    enum class ParamsType { DefaultParams, ThresholdOnly, FullParams, HelpCommand, Unknown};
 
-    fs::path reference_folder{root / "references"};
-    fs::path compare_folder{root / "images"};
-    fs::path masks_folder{root / "masks"};
-    fs::path diff_folder{root / "diff"};
-    fs::path reports_folder{root};
+    fs::path reference_folder{root / "input" / "references"};
+    fs::path images_folder{root / "input" / "images"};
+    fs::path masks_folder{root / "input" / "masks"};
+    fs::path diff_folder{root / "output" / "diff"};
+    fs::path reports_folder{root / "output" };
     int threshold{0};
-    ParamsType type{ParamsType::DefaultParams};
+    
     bool show_images_while_processing{true};
 
     const std::string default_mask_name{"_mask.png"};
 
-    const std::string to_string();
-    const void print();
-    void load_from_args(int argc, char** argv);
+    ParamsType load_from_args(int argc, char** argv);
 
-    static void print_cmd_syntax();
+    std::string to_string() const;
+    void print() const;
+    ParamsType type() const;
+    static void print_syntax();
+    static void print_examples();
 
  private:
-    unsigned char decode_threshold(const string argument);
-    std::filesystem::path generate_diff_path(const string path);
+    ParamsType _type{ParamsType::Unknown};
+    bool is_help_command(std::string command) const;
+    unsigned char decode_threshold(const string argument) const;
+    std::filesystem::path generate_diff_path(const string path) const;
 };

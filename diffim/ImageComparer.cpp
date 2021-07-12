@@ -127,17 +127,24 @@ int ImageComparer::count_non_zero_pixels(const cv::Mat& diff,
 
 void ImageComparer::initialize_display_windows()
 {
-    namedWindow("Compared image");
-    moveWindow("Compared image", 100, 20);
+    namedWindow("Image");
+    moveWindow("Image", 100, 20);
+
+    namedWindow("Reference");
+    moveWindow("Reference", 700, 20);
 
     namedWindow("diff");
-    moveWindow("diff", 100, 500);
+    moveWindow("diff", 400, 20);
+
 }
 
 void ImageComparer::update_display_windows()
 {
     if (!_image.empty())
-        imshow("Compared image", _image);
+        imshow("Image", _image);
+
+    if (!_reference.empty())
+        imshow("Reference", _reference);
 
     if (!_difference.empty())
         imshow("diff", _difference);

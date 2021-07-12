@@ -2,17 +2,11 @@
 #include "..\pch.h"
 
 #include "..\ComparableEntity.h"
-#include "..\Parameters.h"
-#include "..\Statistics.h"
 #include "IReporter.h"
 
-class JsonReporter : public IReporter {
+class CsvReporter : public IReporter {
  public:
-    JsonReporter(Statistics statistics);
     void save(const std::vector<ComparableEntity>& data, const fs::path& report,
               const Parameters& params);
     fs::path generate_report_path(const fs::path& report_folder) const;
-
- private:
-    Statistics _statistics;
 };

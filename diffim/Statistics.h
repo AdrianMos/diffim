@@ -7,15 +7,15 @@
 class Statistics {
   public:
 	void add_status(ComparisonStatus status);
-	string to_string();
 
-	void print();
+	string to_string() const;
+	void print() const;
 
-    int total();
-    int identical() { return _identical; };
-    int different() { return _different; };
-    int missing() { return _missing; };
-    int not_compared() { return _not_compared; };    
+    int total() const;
+    int identical() const { return _identical; };
+    int different() const { return _different; };
+    int missing() const { return _missing; };
+    int not_compared() const { return _not_compared; };    
 
   private:
 	int _identical{0};

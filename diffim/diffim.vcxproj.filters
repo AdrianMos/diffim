@@ -48,7 +48,7 @@
     <ClCompile Include="reporters\JsonReporter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="reporters\TabReporter.cpp">
+    <ClCompile Include="reporters\CsvReporter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,7 +86,7 @@
     <ClInclude Include="reporters\JsonReporter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="reporters\TabReporter.h">
+    <ClInclude Include="reporters\CsvReporter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

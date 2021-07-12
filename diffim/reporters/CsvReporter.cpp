@@ -1,16 +1,16 @@
 #include "..\pch.h"
 
-#include "TabReporter.h"
+#include "CsvReporter.h"
 
 
-void TabReporter::save(std::vector<ComparableEntity>& data,
+void CsvReporter::save(const std::vector<ComparableEntity>& data,
                        const fs::path& report_path,
                        const Parameters& params)
 {
     ofstream file;
     file.open(report_path);
 
-    file << "File Name\tResult\tFolder\n";
+    file << "File Name,Result,Folder\n";
 
     for (auto& result : data) {
         string name
@@ -18,12 +18,12 @@ void TabReporter::save(std::vector<ComparableEntity>& data,
         string status = convert_status_to_string(result.status);
         string folder = result.relative_path.parent_path().string();
 
-        file << name << "\t" << status << "\t" << folder << "\n";
+        file << name << "," << status << "," << folder << "\n";
     }
     file.close();
 }
 
-fs::path TabReporter::generate_report_path(const fs::path& report_folder)
+fs::path CsvReporter::generate_report_path(const fs::path& report_folder) const
 {
-    return (report_folder / "comparison.tsv");
+    return (report_folder / "comparison.csv");
 }

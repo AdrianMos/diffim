@@ -47,14 +47,14 @@ JsonElem& JsonElem::add(JsonElem elem)
 }
 
 
-std::string JsonElem::to_string()
+std::string JsonElem::to_string() const
 {
     if (!_title.empty())
         return quote(_title) + ": " + get_value();
     return get_value();
 }
 
-std::string JsonElem::to_pritty_string(int padding)
+std::string JsonElem::to_pritty_string(int padding) const
 {
     if (!_title.empty())
         return std::string(padding, ' ') + quote(_title) + ": "
@@ -64,7 +64,7 @@ std::string JsonElem::to_pritty_string(int padding)
 }
 
 
-std::string JsonElem::get_value()
+std::string JsonElem::get_value() const
 {
     switch (_type) {
         case DataType::Integer: return _value.value();
@@ -76,7 +76,7 @@ std::string JsonElem::get_value()
 }
 
 
-std::string JsonElem::get_value_pritty(int padding)
+std::string JsonElem::get_value_pritty(int padding) const
 {
     switch (_type) {
         case DataType::Integer: return _value.value();
@@ -87,7 +87,7 @@ std::string JsonElem::get_value_pritty(int padding)
     }
 }
 
-std::string JsonElem::get_container_values()
+std::string JsonElem::get_container_values() const
 {
     std::ostringstream oss;
     oss << start_delimiter();
@@ -104,7 +104,7 @@ std::string JsonElem::get_container_values()
     return oss.str();
 }
 
-std::string JsonElem::get_container_values_pritty(int padding)
+std::string JsonElem::get_container_values_pritty(int padding) const
 {
     std::ostringstream oss;
     std::string pad(padding, ' ');
@@ -123,7 +123,7 @@ std::string JsonElem::get_container_values_pritty(int padding)
 }
 
 
-std::string JsonElem::end_delimiter()
+std::string JsonElem::end_delimiter() const
 {
     switch (_type) {
         case DataType::Object: return "}";
@@ -132,7 +132,7 @@ std::string JsonElem::end_delimiter()
     }
 }
 
-std::string JsonElem::start_delimiter()
+std::string JsonElem::start_delimiter() const
 {
     switch (_type) {
         case DataType::Object: return "{";
@@ -142,13 +142,13 @@ std::string JsonElem::start_delimiter()
 }
 
 
-string JsonElem::quote(const string status)
+string JsonElem::quote(const string status) const
 {
     return "\"" + status + "\"";
 }
 
 
-string JsonElem::escape_chars(const string text)
+string JsonElem::escape_chars(const string text) const
 {
     std::string escaped_text{text};
     std::replace(escaped_text.begin(), escaped_text.end(), '\\', '/');

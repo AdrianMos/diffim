@@ -20,7 +20,7 @@ std::vector<ComparableEntity> FolderScanner::scan()
 
             comparable_items.push_back(
                 ComparableEntity(reference_file,
-                                 _params.compare_folder / relative_path,
+                                 _params.images_folder / relative_path,
                                  _params.diff_folder / relative_path,
                                  find_mask(reference_file),
                                  relative_path,
@@ -41,7 +41,7 @@ bool FolderScanner::is_supported_format(const fs::path& file)
 }
 
 
-std::string FolderScanner::find_mask(const fs::path& reference_image)
+std::string FolderScanner::find_mask(const fs::path& reference_image) const
 {
     auto relative_name = fs::relative(reference_image, _params.reference_folder);
     fs::path mask = _params.masks_folder / relative_name;
