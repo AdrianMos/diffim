@@ -1,5 +1,6 @@
 # diffim
-Open-source, command-line, image comparing tool with masks support.
+Open-source, command-line, image comparing tool with masks support,  
+great for comparing large sets of images.
 
 <img src="doc/img/diff.png" width="70%"> 
 
@@ -7,8 +8,7 @@ Open-source, command-line, image comparing tool with masks support.
 * generates diff images to help you quickly spot the differences
 * compares full images or regions of interest
 * adjustable comparison threshold
-* generates a full json report 
-* generates a simplified csv report
+* generates a full json report + a simplified csv report
 * image comparison implemented using OpenCV 
 
 ## How to use
@@ -59,20 +59,20 @@ To get the latest syntax, run the help command:
 
 ## Reports
 Every comparison generates a full .json report (+ a simplified .csv one).  
-The report includes a comparison summary, statistics (e.g. number of identical images) and detailed data:
+The report includes a comparison summary, statistics (i.e. number of identical images) and detailed data:
 
 <img src="doc/img/json.png" width="965"> 
 
 
 
-## Compare only regions of interest
+## Compare regions of interest
 
-Define your regions of interest as masks and place them in the `masks` folder.
+To compare only parts of an image, define the regions of interest using masks and place them in the `masks` folder.
 
-You can define `Specific Masks`, which apply to specific images and must be named as the images themselves or
+You can define `Specific Masks`, which apply to specific images (must be named as the images themselves) or
 you can define `Folder Masks` which apply to all images within a folder (except the ones which have specific masks defined) and must be named `_mask.png`.
 
-The `test` folder includes these two types of masks. Check them out.
+The `test` folder includes these two types of masks. Check it out.
 
 
 
