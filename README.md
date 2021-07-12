@@ -1,7 +1,7 @@
 ﻿# diffim
 Open-source, command-line, image comparing tool with masks support.
 
-<img src="doc/img/diff.png" width="946" height="202"> 
+<img src="doc/img/diff.png" width="70%"> 
 
 ## Key Features
 * generates diff images to help you quickly spot the differences
@@ -54,15 +54,14 @@ To get the latest syntax, run the help command:
 > diffim.exe -help
 ```
 
-<img src="doc/img/syntax.png" width="699" height="334"> 
+<img src="doc/img/syntax.png" width="965"> 
 
 
 
 ## Reports
-Every comparison generates a full .json report and a simplified .csv one.  
-The .json report includes the comparison summary, statistics (e.g. number of identical images) and detailed comparison data.
-
-<img src="doc/img/json.png" width="774" height="383"> 
+Every comparison generates a full .json report (+ a simplified .csv one).  
+The report includes a comparison summary, statistics (e.g. number of identical images) and detailed data:
+<img src="doc/img/json.png" width="965"> 
 
 
 
@@ -77,8 +76,9 @@ The `test` folder includes these two types of masks. Check them out.
 
 
 
-## Dependencies
-The image comparison algorithm is based on OpenCV, therefore to use `diffim` you have to install OpenCV:
+## Installation
+### Install OpenCV
+The image comparison algorithm is based on OpenCV. To install OpenCV:
 1. download [OpenCV 4.5.2](https://sourceforge.net/projects/opencvlibrary/files/4.5.2/opencv-4.5.2-vc14_vc15.exe/download) and extract it to c:\ => C:\opencv folder is created
 1. add a new environmental variable OPENCV_DIR=c:\opencv\build\x64\vc15
 1. add C:\opencv\build\x64\vc15\bin\ to the Path environmental variable.
