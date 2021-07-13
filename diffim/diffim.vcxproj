@@ -152,6 +152,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ColorizePixelMismatchFunctor.cpp" />
+    <ClCompile Include="commands\CompareImagesCommand.cpp" />
+    <ClCompile Include="commands\HelpCommand.cpp" />
+    <ClCompile Include="commands\InvalidCommand.cpp" />
+    <ClCompile Include="commands\CommandFactory.cpp" />
     <ClCompile Include="ComparableEntity.cpp" />
     <ClCompile Include="FolderScanner.cpp" />
     <ClCompile Include="ImageComparer.cpp" />
@@ -166,6 +170,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorizePixelMismatchFunctor.h" />
+    <ClInclude Include="commands\CompareImagesCommand.h" />
+    <ClInclude Include="commands\HelpCommand.h" />
+    <ClInclude Include="commands\InvalidCommand.h" />
+    <ClInclude Include="commands\CommandFactory.h" />
+    <ClInclude Include="commands\ICommand.h" />
     <ClInclude Include="ComparableEntity.h" />
     <ClInclude Include="FolderScanner.h" />
     <ClInclude Include="ImageComparer.h" />
